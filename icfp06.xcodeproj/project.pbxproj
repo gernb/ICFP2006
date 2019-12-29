@@ -8,23 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		90F37A4423B866B80067DA69 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F37A4323B866B80067DA69 /* main.swift */; };
+		90F37A4D23B867C10067DA69 /* codex.umz in CopyFiles */ = {isa = PBXBuildFile; fileRef = 90F37A4A23B8676A0067DA69 /* codex.umz */; };
+		90F37A4E23B867C10067DA69 /* sandmark.umz in CopyFiles */ = {isa = PBXBuildFile; fileRef = 90F37A4B23B8676A0067DA69 /* sandmark.umz */; };
+		90F37A5023B867F10067DA69 /* um.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F37A4F23B867F10067DA69 /* um.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		90F37A3E23B866B80067DA69 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				90F37A4D23B867C10067DA69 /* codex.umz in CopyFiles */,
+				90F37A4E23B867C10067DA69 /* sandmark.umz in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		90F37A4023B866B80067DA69 /* icfp06 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = icfp06; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F37A4323B866B80067DA69 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		90F37A4A23B8676A0067DA69 /* codex.umz */ = {isa = PBXFileReference; lastKnownFileType = file; path = codex.umz; sourceTree = SOURCE_ROOT; };
+		90F37A4B23B8676A0067DA69 /* sandmark.umz */ = {isa = PBXFileReference; lastKnownFileType = file; path = sandmark.umz; sourceTree = SOURCE_ROOT; };
+		90F37A4C23B8676A0067DA69 /* um-spec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "um-spec.txt"; sourceTree = SOURCE_ROOT; };
+		90F37A4F23B867F10067DA69 /* um.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = um.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +66,11 @@
 		90F37A4223B866B80067DA69 /* icfp06 */ = {
 			isa = PBXGroup;
 			children = (
+				90F37A4A23B8676A0067DA69 /* codex.umz */,
+				90F37A4B23B8676A0067DA69 /* sandmark.umz */,
+				90F37A4C23B8676A0067DA69 /* um-spec.txt */,
 				90F37A4323B866B80067DA69 /* main.swift */,
+				90F37A4F23B867F10067DA69 /* um.swift */,
 			);
 			path = icfp06;
 			sourceTree = "<group>";
@@ -121,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90F37A4423B866B80067DA69 /* main.swift in Sources */,
+				90F37A5023B867F10067DA69 /* um.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
