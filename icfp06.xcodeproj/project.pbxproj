@@ -34,6 +34,8 @@
 		90F37A4B23B8676A0067DA69 /* sandmark.umz */ = {isa = PBXFileReference; lastKnownFileType = file; path = sandmark.umz; sourceTree = SOURCE_ROOT; };
 		90F37A4C23B8676A0067DA69 /* um-spec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "um-spec.txt"; sourceTree = SOURCE_ROOT; };
 		90F37A4F23B867F10067DA69 /* um.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = um.swift; sourceTree = "<group>"; };
+		90F37A5123B96A800067DA69 /* hack.bas */ = {isa = PBXFileReference; lastKnownFileType = file; path = hack.bas; sourceTree = SOURCE_ROOT; };
+		90F37A5223B97C340067DA69 /* counter.bas */ = {isa = PBXFileReference; lastKnownFileType = file; path = counter.bas; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,8 @@
 				90F37A4C23B8676A0067DA69 /* um-spec.txt */,
 				90F37A4323B866B80067DA69 /* main.swift */,
 				90F37A4F23B867F10067DA69 /* um.swift */,
+				90F37A5123B96A800067DA69 /* hack.bas */,
+				90F37A5223B97C340067DA69 /* counter.bas */,
 			);
 			path = icfp06;
 			sourceTree = "<group>";

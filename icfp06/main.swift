@@ -102,21 +102,21 @@ func getInput(prompt: String? = nil) -> Input {
         print(prompt)
     }
     let line = readLine() ?? ""
-    if line == "quit" {
+    if line == "!quit" {
         return .quit
     }
-    if line.hasPrefix("save") {
-        let file = String(line.dropFirst(5))
+    if line.hasPrefix("!save") {
+        let file = String(line.dropFirst(6))
         if file.isEmpty {
-            print("Usage: save <filename>")
+            print("Usage: !save <filename>")
             return getInput(prompt: prompt)
         }
         return .save(file)
     }
-    if line.hasPrefix("load") {
-        let file = String(line.dropFirst(5))
+    if line.hasPrefix("!load") {
+        let file = String(line.dropFirst(6))
         if file.isEmpty {
-            print("Usage: load <filename>")
+            print("Usage: !load <filename>")
             return getInput(prompt: prompt)
         }
         return .load(file)
