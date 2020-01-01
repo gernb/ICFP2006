@@ -65,17 +65,19 @@ let decoder = PropertyListDecoder()
 var encoder = PropertyListEncoder()
 
 func saveState(to filename: String) {
+    print("\nSaving state...")
     let fileUrl = pwd.appendingPathComponent(filename)
     if let data = try? encoder.encode(um.state), (try? data.write(to: fileUrl)) != nil {
-        print("\nSaved to \(filename)\n")
+        print("Saved to \(filename)\n")
     }
 }
 
 func loadState(from filename: String) {
+    print("\nLoading saved state...")
     let fileUrl = pwd.appendingPathComponent(filename)
     if let data = try? Data(contentsOf: fileUrl), let state = try? decoder.decode(UM.State.self, from: data) {
         um.state = state
-        print("\nLoaded saved state from \(filename)\n")
+        print("Loaded saved state from \(filename)\n")
     }
 }
 
@@ -120,6 +122,13 @@ func getInput(prompt: String? = nil) -> Input {
             return getInput(prompt: prompt)
         }
         return .load(file)
+    }
+    if line.hasPrefix("!build") {
+        let name = String(line.dropFirst(7))
+        let builder = ItemBuilder(build: name, with: um.state)
+        builder.run()
+        um.state = builder.um.state
+        return getInput(prompt: prompt)
     }
     return .other(line)
 }
