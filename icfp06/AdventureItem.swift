@@ -13,6 +13,13 @@ struct AdventureItem: Equatable {
         case pristine
         indirect case broken(condition: Condition, missing: [AdventureItem])
 
+        var missing: [AdventureItem] {
+            switch self {
+            case .pristine: return []
+            case .broken(_, let missing): return missing
+            }
+        }
+
         init(sexp: Sexp) {
             if sexp.tag == "pristine" {
                 self = .pristine

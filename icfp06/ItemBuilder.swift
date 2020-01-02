@@ -36,13 +36,8 @@ final class ItemBuilder {
 
         var itemStack = getRoom()
 
-        guard let sourceItem = itemStack.first(where: { $0.name.lowercased() == itemName.lowercased() }) else {
-            print("*** Error! \(itemName) is not in this room.")
-            return
-        }
-        let item = AdventureItem(name: sourceItem.name, adjective: nil, condition: .pristine)
         print("*** Required items: ", terminator: "")
-        guard var requiredItems = build(item, using: sourceItem, with: itemStack) else {
+        guard var requiredItems = build(itemName, with: itemStack) else {
             print("*** Error! \(itemName) cannot be built.")
             return
         }
@@ -124,6 +119,14 @@ final class ItemBuilder {
         return items
     }
 
+    private func build(_ targetName: String, with parts: [AdventureItem]) -> [AdventureItem]? {
+        guard let name = parts.first(where: { $0.name.lowercased() == targetName.lowercased() })?.name else {
+            return nil
+        }
+        let targetItem = AdventureItem(name: name, adjective: nil, condition: .pristine)
+        return build(targetItem, with: parts)
+    }
+
     private func build(_ targetItem: AdventureItem, with parts: [AdventureItem]) -> [AdventureItem]? {
         let possibleRoomItems = parts.filter { $0.name == targetItem.name }
         let possibleBuilds = possibleRoomItems.compactMap { element -> [AdventureItem]? in
@@ -138,19 +141,11 @@ final class ItemBuilder {
     private func build(_ targetItem: AdventureItem, using sourceItem: AdventureItem, with parts: [AdventureItem]) -> [AdventureItem]? {
         var remainingParts = parts.removingFirst { $0.matches(sourceItem) }
         var requiredItems: [AdventureItem] = [sourceItem]
-        let targetItemMissing: [AdventureItem] = {
-            switch targetItem.condition {
-            case .pristine: return []
-            case .broken(_, let missing): return missing
-            }
-        }()
+        let targetItemMissing = targetItem.condition.missing
         var sourceItem = sourceItem
         while sourceItem.matches(targetItem) == false {
-            guard case .broken(_, let sourceItemMissing) = sourceItem.condition else {
-                return nil
-            }
             var combined = false
-            for missingItem in sourceItemMissing {
+            for missingItem in sourceItem.condition.missing {
                 if targetItemMissing.contains(where: { $0.matches(missingItem) }) {
                     continue
                 }
