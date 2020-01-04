@@ -20,6 +20,25 @@ struct AdventureItem: Equatable {
             }
         }
 
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            switch (lhs, rhs) {
+            case (.pristine, .pristine): return true
+            case (.pristine, .broken): return false
+            case (.broken, .pristine): return false
+            case (.broken(let lhsCondition, _), .broken(let rhsCondition, _)):
+                let missingMatches: Bool = {
+                    guard lhs.missing.count == rhs.missing.count else { return false }
+                    for item in lhs.missing {
+                        if rhs.missing.contains(where: { $0.matches(item) }) == false {
+                            return false
+                        }
+                    }
+                    return true
+                }()
+                return lhsCondition == rhsCondition && missingMatches
+            }
+        }
+
         init(sexp: Sexp) {
             if sexp.tag == "pristine" {
                 self = .pristine

@@ -31,13 +31,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9007EDD723C12AA100BFD2D7 /* gc.rml */ = {isa = PBXFileReference; lastKnownFileType = file; path = gc.rml; sourceTree = SOURCE_ROOT; };
 		90F37A4023B866B80067DA69 /* icfp06 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = icfp06; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F37A4323B866B80067DA69 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		90F37A4A23B8676A0067DA69 /* codex.umz */ = {isa = PBXFileReference; lastKnownFileType = file; path = codex.umz; sourceTree = SOURCE_ROOT; };
 		90F37A4B23B8676A0067DA69 /* sandmark.umz */ = {isa = PBXFileReference; lastKnownFileType = file; path = sandmark.umz; sourceTree = SOURCE_ROOT; };
 		90F37A4C23B8676A0067DA69 /* um-spec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "um-spec.txt"; sourceTree = SOURCE_ROOT; };
 		90F37A4F23B867F10067DA69 /* um.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = um.swift; sourceTree = "<group>"; };
-		90F37A5123B96A800067DA69 /* hack.bas */ = {isa = PBXFileReference; lastKnownFileType = file; path = hack.bas; sourceTree = SOURCE_ROOT; };
+		90F37A5123B96A800067DA69 /* hack.bas */ = {isa = PBXFileReference; lastKnownFileType = text; path = hack.bas; sourceTree = SOURCE_ROOT; };
 		90F37A5323BAE8730067DA69 /* sexp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sexp.swift; sourceTree = "<group>"; };
 		90F37A5723BBBA890067DA69 /* ItemBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBuilder.swift; sourceTree = "<group>"; };
 		90F37A5A23BC6B940067DA69 /* AdventureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureItem.swift; sourceTree = "<group>"; };
@@ -78,10 +79,11 @@
 				90F37A4C23B8676A0067DA69 /* um-spec.txt */,
 				90F37A4323B866B80067DA69 /* main.swift */,
 				90F37A4F23B867F10067DA69 /* um.swift */,
-				90F37A5123B96A800067DA69 /* hack.bas */,
 				90F37A5323BAE8730067DA69 /* sexp.swift */,
 				90F37A5723BBBA890067DA69 /* ItemBuilder.swift */,
 				90F37A5A23BC6B940067DA69 /* AdventureItem.swift */,
+				9007EDD723C12AA100BFD2D7 /* gc.rml */,
+				90F37A5123B96A800067DA69 /* hack.bas */,
 			);
 			path = icfp06;
 			sourceTree = "<group>";
