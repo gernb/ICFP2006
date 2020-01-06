@@ -1,3 +1,4 @@
+use uploader
 (*
  * gc.rml - robot mind source for garbage collector (model 3)
  *
@@ -357,6 +358,448 @@ fun combine_items (big : item, small : item, flipped : bool) : datum =
       | False { } => return combine_items (small, big, True { })
     ].
 
+type maybeitem = NoItem { } | SomeItem { item }.
+
+fun find_in_items (name : string, items : itemlist) : maybeitem =
+  case items of
+    NoItems { } => return NoItem { }
+  | SomeItems { item, items } => [
+    case item_name (item) = name of
+      True { } => return SomeItem { item }
+    | False { } => return find_in_items (name, items)
+  ].
+
+fun item_from_name (name : string) : maybeitem =
+  case room_from_name (TRASH) of
+    NoRoom { } =>
+      return NoItem { }
+  | SomeRoom { trash } => [
+      return find_in_items (name, room_items (trash))
+  ].
+
+fun char_to_item (char : int) : maybeitem =
+  case 10 = char of
+    True { } => return item_from_name ("ace-of-hearts")
+  | False { } => case 32 = char of
+    True { } => return item_from_name ("king-of-hearts")
+  | False { } => case 33 = char of
+    True { } => return item_from_name ("queen-of-hearts")
+  | False { } => case 34 = char of
+    True { } => return item_from_name ("jack-of-hearts")
+  | False { } => case 35 = char of
+    True { } => return item_from_name ("ten-of-hearts")
+  | False { } => case 36 = char of
+    True { } => return item_from_name ("nine-of-hearts")
+  | False { } => case 37 = char of
+    True { } => return item_from_name ("eight-of-hearts")
+  | False { } => case 38 = char of
+    True { } => return item_from_name ("seven-of-hearts")
+  | False { } => case 39 = char of
+    True { } => return item_from_name ("six-of-hearts")
+  | False { } => case 40 = char of
+    True { } => return item_from_name ("five-of-hearts")
+  | False { } => case 41 = char of
+    True { } => return item_from_name ("four-of-hearts")
+  | False { } => case 42 = char of
+    True { } => return item_from_name ("three-of-hearts")
+  | False { } => case 43 = char of
+    True { } => return item_from_name ("two-of-hearts")
+  | False { } => case 44 = char of
+    True { } => return item_from_name ("ace-of-diamonds")
+  | False { } => case 45 = char of
+    True { } => return item_from_name ("king-of-diamonds")
+  | False { } => case 46 = char of
+    True { } => return item_from_name ("queen-of-diamonds")
+  | False { } => case 47 = char of
+    True { } => return item_from_name ("jack-of-diamonds")
+  | False { } => case 48 = char of
+    True { } => return item_from_name ("ten-of-diamonds")
+  | False { } => case 49 = char of
+    True { } => return item_from_name ("nine-of-diamonds")
+  | False { } => case 50 = char of
+    True { } => return item_from_name ("eight-of-diamonds")
+  | False { } => case 51 = char of
+    True { } => return item_from_name ("seven-of-diamonds")
+  | False { } => case 52 = char of
+    True { } => return item_from_name ("six-of-diamonds")
+  | False { } => case 53 = char of
+    True { } => return item_from_name ("five-of-diamonds")
+  | False { } => case 54 = char of
+    True { } => return item_from_name ("four-of-diamonds")
+  | False { } => case 55 = char of
+    True { } => return item_from_name ("three-of-diamonds")
+  | False { } => case 56 = char of
+    True { } => return item_from_name ("two-of-diamonds")
+  | False { } => case 57 = char of
+    True { } => return item_from_name ("ace-of-spades")
+  | False { } => case 58 = char of
+    True { } => return item_from_name ("king-of-spades")
+  | False { } => case 59 = char of
+    True { } => return item_from_name ("queen-of-spades")
+  | False { } => case 60 = char of
+    True { } => return item_from_name ("jack-of-spades")
+  | False { } => case 61 = char of
+    True { } => return item_from_name ("ten-of-spades")
+  | False { } => case 62 = char of
+    True { } => return item_from_name ("nine-of-spades")
+  | False { } => case 63 = char of
+    True { } => return item_from_name ("eight-of-spades")
+  | False { } => case 64 = char of
+    True { } => return item_from_name ("seven-of-spades")
+  | False { } => case 65 = char of
+    True { } => return item_from_name ("six-of-spades")
+  | False { } => case 66 = char of
+    True { } => return item_from_name ("five-of-spades")
+  | False { } => case 67 = char of
+    True { } => return item_from_name ("four-of-spades")
+  | False { } => case 68 = char of
+    True { } => return item_from_name ("three-of-spades")
+  | False { } => case 69 = char of
+    True { } => return item_from_name ("two-of-spades")
+  | False { } => case 70 = char of
+    True { } => return item_from_name ("ace-of-clubs")
+  | False { } => case 71 = char of
+    True { } => return item_from_name ("king-of-clubs")
+  | False { } => case 72 = char of
+    True { } => return item_from_name ("queen-of-clubs")
+  | False { } => case 73 = char of
+    True { } => return item_from_name ("jack-of-clubs")
+  | False { } => case 74 = char of
+    True { } => return item_from_name ("ten-of-clubs")
+  | False { } => case 75 = char of
+    True { } => return item_from_name ("nine-of-clubs")
+  | False { } => case 76 = char of
+    True { } => return item_from_name ("eight-of-clubs")
+  | False { } => case 77 = char of
+    True { } => return item_from_name ("seven-of-clubs")
+  | False { } => case 78 = char of
+    True { } => return item_from_name ("six-of-clubs")
+  | False { } => case 79 = char of
+    True { } => return item_from_name ("five-of-clubs")
+  | False { } => case 80 = char of
+    True { } => return item_from_name ("four-of-clubs")
+  | False { } => case 81 = char of
+    True { } => return item_from_name ("three-of-clubs")
+  | False { } => case 82 = char of
+    True { } => return item_from_name ("two-of-clubs")
+  | False { } => case 83 = char of
+    True { } => return item_from_name ("button")
+  | False { } => case 84 = char of
+    True { } => return item_from_name ("motherboard")
+  | False { } => case 85 = char of
+    True { } => return item_from_name ("bolt")
+  | False { } => case 86 = char of
+    True { } => return item_from_name ("processor")
+  | False { } => case 87 = char of
+    True { } => return item_from_name ("radio")
+  | False { } => case 88 = char of
+    True { } => return item_from_name ("screw")
+  | False { } => case 89 = char of
+    True { } => return item_from_name ("antenna")
+  | False { } => case 90 = char of
+    True { } => return item_from_name ("cache")
+  | False { } => case 91 = char of
+    True { } => return item_from_name ("pill")
+  | False { } => case 92 = char of
+    True { } => return item_from_name ("spring")
+  | False { } => case 93 = char of
+    True { } => return item_from_name ("transistor")
+  | False { } => case 94 = char of
+    True { } => return item_from_name ("A-1920-IXB")
+  | False { } => case 95 = char of
+    True { } => return item_from_name ("USB cable")
+  | False { } => case 96 = char of
+    True { } => return item_from_name ("display")
+  | False { } => case 97 = char of
+    True { } => return item_from_name ("progress bar")
+  | False { } => case 98 = char of
+    True { } => return item_from_name ("power cord")
+  | False { } => case 99 = char of
+    True { } => return item_from_name ("jumper shunt")
+  | False { } => case 100 = char of
+    True { } => return item_from_name ("battery")
+  | False { } => case 101 = char of
+    True { } => return item_from_name ("status LED")
+  | False { } => case 102 = char of
+    True { } => return item_from_name ("EPROM burner")
+  | False { } => case 103 = char of
+    True { } => return item_from_name ("RS232 adapter")
+  | False { } => case 104 = char of
+    True { } => return item_from_name ("MOSFET")
+  | False { } => case 105 = char of
+    True { } => return item_from_name ("B-5065-YQM")
+  | False { } => case 106 = char of
+    True { } => return item_from_name ("D-4292-HMN")
+  | False { } => case 107 = char of
+    True { } => return item_from_name ("F-4832-DFT")
+  | False { } => case 108 = char of
+    True { } => return item_from_name ("H-6458-ZXL")
+  | False { } => case 109 = char of
+    True { } => return item_from_name ("J-1623-ITM")
+  | False { } => case 110 = char of
+    True { } => return item_from_name ("L-4832-RPN")
+  | False { } => case 111 = char of
+    True { } => return item_from_name ("N-4292-NWT")
+  | False { } => case 112 = char of
+    True { } => return item_from_name ("P-5065-WBG")
+  | False { } => case 113 = char of
+    True { } => return item_from_name ("R-4292-FWH")
+  | False { } => case 114 = char of
+    True { } => return item_from_name ("T-6678-BEN")
+  | False { } => case 115 = char of
+    True { } => return item_from_name ("V-4832-XFP")
+  | False { } => case 116 = char of
+    True { } => return item_from_name ("X-6458-TSZ")
+  | False { } => case 117 = char of
+    True { } => return item_from_name ("Z-4292-PHT")
+  | False { } => case 118 = char of
+    True { } => return item_from_name ("B-9247-YCM")
+  | False { } => case 119 = char of
+    True { } => return item_from_name ("D-1403-UXS")
+  | False { } => case 120 = char of
+    True { } => return item_from_name ("F-6678-DTT")
+  | False { } => case 121 = char of
+    True { } => return item_from_name ("H-0010-ZBZ")
+  | False { } => case 122 = char of
+    True { } => return item_from_name ("J-9247-IWC")
+  | False { } => case 123 = char of
+    True { } => return item_from_name ("L-6458-RNH")
+  | False { } => case 124 = char of
+    True { } => return item_from_name ("N-5065-ALO")
+  | False { } => case 125 = char of
+    True { } => return item_from_name ("P-4832-JFJ")
+  | False { } => case 126 = char of
+    True { } => return item_from_name ("R-4832-FAV")
+  | False { } => return NoItem { }.
+
+fun item_to_char (item : item) : int = [
+  let name = item_name (item).
+  case "ace-of-hearts" = name of
+    True { } => return 10
+  | False { } => case "king-of-hearts" = name of
+    True { } => return 32
+  | False { } => case "queen-of-hearts" = name of
+    True { } => return 33
+  | False { } => case "jack-of-hearts" = name of
+    True { } => return 34
+  | False { } => case "ten-of-hearts" = name of
+    True { } => return 35
+  | False { } => case "nine-of-hearts" = name of
+    True { } => return 36
+  | False { } => case "eight-of-hearts" = name of
+    True { } => return 37
+  | False { } => case "seven-of-hearts" = name of
+    True { } => return 38
+  | False { } => case "six-of-hearts" = name of
+    True { } => return 39
+  | False { } => case "five-of-hearts" = name of
+    True { } => return 40
+  | False { } => case "four-of-hearts" = name of
+    True { } => return 41
+  | False { } => case "three-of-hearts" = name of
+    True { } => return 42
+  | False { } => case "two-of-hearts" = name of
+    True { } => return 43
+  | False { } => case "ace-of-diamonds" = name of
+    True { } => return 44
+  | False { } => case "king-of-diamonds" = name of
+    True { } => return 45
+  | False { } => case "queen-of-diamonds" = name of
+    True { } => return 46
+  | False { } => case "jack-of-diamonds" = name of
+    True { } => return 47
+  | False { } => case "ten-of-diamonds" = name of
+    True { } => return 48
+  | False { } => case "nine-of-diamonds" = name of
+    True { } => return 49
+  | False { } => case "eight-of-diamonds" = name of
+    True { } => return 50
+  | False { } => case "seven-of-diamonds" = name of
+    True { } => return 51
+  | False { } => case "six-of-diamonds" = name of
+    True { } => return 52
+  | False { } => case "five-of-diamonds" = name of
+    True { } => return 53
+  | False { } => case "four-of-diamonds" = name of
+    True { } => return 54
+  | False { } => case "three-of-diamonds" = name of
+    True { } => return 55
+  | False { } => case "two-of-diamonds" = name of
+    True { } => return 56
+  | False { } => case "ace-of-spades" = name of
+    True { } => return 57
+  | False { } => case "king-of-spades" = name of
+    True { } => return 58
+  | False { } => case "queen-of-spades" = name of
+    True { } => return 59
+  | False { } => case "jack-of-spades" = name of
+    True { } => return 60
+  | False { } => case "ten-of-spades" = name of
+    True { } => return 61
+  | False { } => case "nine-of-spades" = name of
+    True { } => return 62
+  | False { } => case "eight-of-spades" = name of
+    True { } => return 63
+  | False { } => case "seven-of-spades" = name of
+    True { } => return 64
+  | False { } => case "six-of-spades" = name of
+    True { } => return 65
+  | False { } => case "five-of-spades" = name of
+    True { } => return 66
+  | False { } => case "four-of-spades" = name of
+    True { } => return 67
+  | False { } => case "three-of-spades" = name of
+    True { } => return 68
+  | False { } => case "two-of-spades" = name of
+    True { } => return 69
+  | False { } => case "ace-of-clubs" = name of
+    True { } => return 70
+  | False { } => case "king-of-clubs" = name of
+    True { } => return 71
+  | False { } => case "queen-of-clubs" = name of
+    True { } => return 72
+  | False { } => case "jack-of-clubs" = name of
+    True { } => return 73
+  | False { } => case "ten-of-clubs" = name of
+    True { } => return 74
+  | False { } => case "nine-of-clubs" = name of
+    True { } => return 75
+  | False { } => case "eight-of-clubs" = name of
+    True { } => return 76
+  | False { } => case "seven-of-clubs" = name of
+    True { } => return 77
+  | False { } => case "six-of-clubs" = name of
+    True { } => return 78
+  | False { } => case "five-of-clubs" = name of
+    True { } => return 79
+  | False { } => case "four-of-clubs" = name of
+    True { } => return 80
+  | False { } => case "three-of-clubs" = name of
+    True { } => return 81
+  | False { } => case "two-of-clubs" = name of
+    True { } => return 82
+  | False { } => case "button" = name of
+    True { } => return 83
+  | False { } => case "motherboard" = name of
+    True { } => return 84
+  | False { } => case "bolt" = name of
+    True { } => return 85
+  | False { } => case "processor" = name of
+    True { } => return 86
+  | False { } => case "radio" = name of
+    True { } => return 87
+  | False { } => case "screw" = name of
+    True { } => return 88
+  | False { } => case "antenna" = name of
+    True { } => return 89
+  | False { } => case "cache" = name of
+    True { } => return 90
+  | False { } => case "pill" = name of
+    True { } => return 91
+  | False { } => case "spring" = name of
+    True { } => return 92
+  | False { } => case "transistor" = name of
+    True { } => return 93
+  | False { } => case "A-1920-IXB" = name of
+    True { } => return 94
+  | False { } => case "USB cable" = name of
+    True { } => return 95
+  | False { } => case "display" = name of
+    True { } => return 96
+  | False { } => case "progress bar" = name of
+    True { } => return 97
+  | False { } => case "power cord" = name of
+    True { } => return 98
+  | False { } => case "jumper shunt" = name of
+    True { } => return 99
+  | False { } => case "battery" = name of
+    True { } => return 100
+  | False { } => case "status LED" = name of
+    True { } => return 101
+  | False { } => case "EPROM burner" = name of
+    True { } => return 102
+  | False { } => case "RS232 adapter" = name of
+    True { } => return 103
+  | False { } => case "MOSFET" = name of
+    True { } => return 104
+  | False { } => case "B-5065-YQM" = name of
+    True { } => return 105
+  | False { } => case "D-4292-HMN" = name of
+    True { } => return 106
+  | False { } => case "F-4832-DFT" = name of
+    True { } => return 107
+  | False { } => case "H-6458-ZXL" = name of
+    True { } => return 108
+  | False { } => case "J-1623-ITM" = name of
+    True { } => return 109
+  | False { } => case "L-4832-RPN" = name of
+    True { } => return 110
+  | False { } => case "N-4292-NWT" = name of
+    True { } => return 111
+  | False { } => case "P-5065-WBG" = name of
+    True { } => return 112
+  | False { } => case "R-4292-FWH" = name of
+    True { } => return 113
+  | False { } => case "T-6678-BEN" = name of
+    True { } => return 114
+  | False { } => case "V-4832-XFP" = name of
+    True { } => return 115
+  | False { } => case "X-6458-TSZ" = name of
+    True { } => return 116
+  | False { } => case "Z-4292-PHT" = name of
+    True { } => return 117
+  | False { } => case "B-9247-YCM" = name of
+    True { } => return 118
+  | False { } => case "D-1403-UXS" = name of
+    True { } => return 119
+  | False { } => case "F-6678-DTT" = name of
+    True { } => return 120
+  | False { } => case "H-0010-ZBZ" = name of
+    True { } => return 121
+  | False { } => case "J-9247-IWC" = name of
+    True { } => return 122
+  | False { } => case "L-6458-RNH" = name of
+    True { } => return 123
+  | False { } => case "N-5065-ALO" = name of
+    True { } => return 124
+  | False { } => case "P-4832-JFJ" = name of
+    True { } => return 125
+  | False { } => case "R-4832-FAV" = name of
+    True { } => return 126
+  | False { } => return 63. (* '?' *)
+].
+
+fun encode (item : item, index : int) = [
+  let s = item_description (item).
+  case index < string_length (s) of
+    True { } => [
+      case char_to_item ( string_charat (s, index)) of
+        NoItem { } => return
+      | SomeItem { item } => [
+          do move_item_to_room (item, here ()).
+          return
+        ]
+    ]
+  | False { } => return
+].
+
+fun decode () : string =
+  case room_items (here ()) of
+    NoItems { } => return ""
+  | SomeItems { item, items } => [
+      let s = string_fromchar (item_to_char (item)).
+      do hide_item (item).
+      return s
+    ].
+
+fun describe (item : item, index : int) : string = [
+  do encode (item, index).
+  let s = decode().
+  case "" = s of
+    True { } => return s
+  | False { } => return s ^ describe (item, index + 1)
+].
+
 (*
   Main handler: all robots must define a function "process" of type
 
@@ -402,21 +845,14 @@ fun process (c : command) : datum =
                return failed_command ("take", describe_item (item),
                                       "internal error (report for maintenance!)")
             | SomeItems { item', items' } => [
-                case item_equals (item, item') of
-                  True { } => [
-                    case itemlist_length (items) >= 6 of
-                      True { } =>
-                        return failed_command ("take",
-                                               describe_item (item),
-                                               "you can't carry any more items")
-                    | False { } => [
+                (* case item_equals (item, item') of *)
+                  (* True { } => [ *)
                         do move_item_to_room (item, inventory).
                         return success_command ("take", describe_item (item))
-                      ]
-                    ]
-                | False { } => (* Not the top item *)
-                    return failed_command ("take", describe_item (item),
-                      "there is another item on top of it (take the other item first)")
+                    (* ] *)
+                (* | False { } => *) (* Not the top item *)
+                     (* return failed_command ("take", describe_item (item),
+                      "there is another item on top of it (take the other item first)") *)
             ]
           ]
         | False { } =>
@@ -434,18 +870,19 @@ fun process (c : command) : datum =
   | Break { item } => [
       (*
        XXX Do garbage robots ever need to break anything?
-       *)
       return failed_command ("break", describe_item (item),
                              "you can't bring yourself to do it")
+      *)
+      return success_command ("cheat", Atom { describe (item, 0) })
   ]
   | Drop { item } => [
       (*
        XXX Do garbage robots ever need to drop anything?
+       return failed_command ("drop", describe_item (item),
+                              "you can't bring yourself to part with it")
+       *)
       do move_item_to_room (item, here ()).
       return success_command ("drop", describe_item (item))
-       *)
-      return failed_command ("drop", describe_item (item),
-                             "you can't bring yourself to part with it")
     ]
   | Use { item } => [
       case item_condition (item) of
@@ -482,18 +919,32 @@ fun process (c : command) : datum =
             return failed_command ("use", describe_item (item),
                                    "the " ^ (item_name (item)) ^ " is broken")
     ]
-  | Whistle { } =>
+  | Whistle { } => [
+      let items = room_items (here ()).
+      do hide_items (items).
       return success_command ("whistle", NoData { })
+  ]
   | Hum { } =>
       return success_command ("hum", NoData { })
-  | Speak { s } =>
+  | Speak { s } => [
       (*
         XXX Note that due to a "feature" (according to the developers upstairs)
         of the command parser, all spoken words appear in lower case.  There
         haven't been any problem reports from field (yet) as most other functions
         are case insensitive.
        *)
-      return success_command ("speak", Atom { s })
+      (* return success_command ("speak", Atom { s }) *)
+      case room_from_name (s) of
+        NoRoom { } => [
+          return failed_command ("speak",
+                                 Atom { s },
+                                 "there is no way " ^ s ^ " from here").
+        ]
+      | SomeRoom { r2 } =>  [
+          do move_self_to_room (r2).
+          return success_command ("go", describe_room (r2)).
+        ]
+    ]
   | LookAround { } =>
       return success_command ("look", describe_room (here ()))
   | ShowInventory { } => [
@@ -511,4 +962,3 @@ fun process (c : command) : datum =
       return success_command ("examine", describe_item (item)).
   ].
 EOM
-

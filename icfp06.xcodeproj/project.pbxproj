@@ -31,7 +31,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9007EDD723C12AA100BFD2D7 /* gc.rml */ = {isa = PBXFileReference; lastKnownFileType = file; path = gc.rml; sourceTree = SOURCE_ROOT; };
+		9007EDD723C12AA100BFD2D7 /* gc.rml */ = {isa = PBXFileReference; lastKnownFileType = file; path = gc.rml; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = "<none>"; };
 		90F37A4023B866B80067DA69 /* icfp06 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = icfp06; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F37A4323B866B80067DA69 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		90F37A4A23B8676A0067DA69 /* codex.umz */ = {isa = PBXFileReference; lastKnownFileType = file; path = codex.umz; sourceTree = SOURCE_ROOT; };
