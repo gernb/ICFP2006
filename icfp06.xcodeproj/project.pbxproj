@@ -31,7 +31,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9007EDD723C12AA100BFD2D7 /* gc.rml */ = {isa = PBXFileReference; lastKnownFileType = file; path = gc.rml; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = "<none>"; };
+		9007EDD723C12AA100BFD2D7 /* gc.rml */ = {isa = PBXFileReference; lastKnownFileType = text; path = gc.rml; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = "<none>"; };
+		903E551F23C69835009E1BAF /* arith.adv */ = {isa = PBXFileReference; lastKnownFileType = text; path = arith.adv; sourceTree = SOURCE_ROOT; };
+		9062159D23C7CBB3005E00D4 /* xml.adv */ = {isa = PBXFileReference; lastKnownFileType = file; path = xml.adv; sourceTree = SOURCE_ROOT; };
 		90F37A4023B866B80067DA69 /* icfp06 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = icfp06; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F37A4323B866B80067DA69 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		90F37A4A23B8676A0067DA69 /* codex.umz */ = {isa = PBXFileReference; lastKnownFileType = file; path = codex.umz; sourceTree = SOURCE_ROOT; };
@@ -84,6 +86,8 @@
 				90F37A5A23BC6B940067DA69 /* AdventureItem.swift */,
 				9007EDD723C12AA100BFD2D7 /* gc.rml */,
 				90F37A5123B96A800067DA69 /* hack.bas */,
+				903E551F23C69835009E1BAF /* arith.adv */,
+				9062159D23C7CBB3005E00D4 /* xml.adv */,
 			);
 			path = icfp06;
 			sourceTree = "<group>";

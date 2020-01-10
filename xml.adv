@@ -1,0 +1,34 @@
+rm xml.adv
+/bin/umodem xml.adv EOF
+{ comments are enclosed by curly-braces;
+  no nested comments are allowed  }
+
+Tag x (Tag x y) => Tag x y;
+z (Tag x (Tag x y)) => z (Tag x y);
+Seq (Tag x y) (Tag x z) => Tag x (Seq y z);
+Seq (Seq x y) z => Seq x (Seq y z);
+Tag x (Tag Bold d) => Tag Bold (Tag x d);
+Tag Maj (Tag x d) => Tag x (Tag Maj d);
+
+{ when all other transformation is done }
+SNF x => x;
+
+. { end of rules }
+EOF
+rm xml.tests
+/bin/umodem xml.tests EOF
+{ tests for XML to SNF }
+
+SNF (Tag Bold (Tag Emph A)) -> (Tag Bold (Tag Emph A));
+SNF (Tag Bold (Tag Bold (Seq A B))) -> (Tag Bold (Seq A B));
+SNF (Tag Maj (Tag Bold (Seq A B))) -> (Tag Bold (Tag Maj (Seq A B)));
+SNF (Tag Maj (Tag Emph (Tag Bold (Seq A B)))) -> (Tag Bold (Tag Emph (Tag Maj (Seq A B))));
+SNF (Seq (Tag Emph (Tag Emph A)) (Tag Maj (Tag Maj B))) -> (Seq (Tag Emph A) (Tag Maj B));
+
+{
+SNF (Seq (Tag Bold (Tag Maj (Tag Maj (Seq (Seq B B) (Tag Bold A))))) (Tag Emph (Seq (Tag Maj (Tag Emph (Tag Bold A))) (Tag Emph (Tag Maj (Tag Maj A)))))) -> Seq X Y;
+}
+
+. { end of tests }
+EOF
+advise step xml.adv xml.tests
