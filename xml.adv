@@ -3,12 +3,19 @@ rm xml.adv
 { comments are enclosed by curly-braces;
   no nested comments are allowed  }
 
-Tag x (Tag x y) => Tag x y;
-z (Tag x (Tag x y)) => z (Tag x y);
-Seq (Tag x y) (Tag x z) => Tag x (Seq y z);
-Seq (Seq x y) z => Seq x (Seq y z);
-Tag x (Tag Bold d) => Tag Bold (Tag x d);
-Tag Maj (Tag x d) => Tag x (Tag Maj d);
+Tag t (Tag t x) => Tag t x;
+Tag t (Tag t A) => Tag t A;
+Seq (Tag t (Tag t x)) y => Seq (Tag t x) y;
+
+Tag Maj (Tag Bold x) => Tag Bold (Tag Maj x);
+Tag Emph (Tag Bold x) => Tag Bold (Tag Emph x);
+
+Seq (Seq x y) x => Seq x (Seq y x);
+Seq (Seq A y) x => Seq A (Seq y x);
+Seq (Seq B B) (Seq x y) => Seq B (Seq B Seq (x y));
+Seq (Seq w x) (Seq y z) => Seq w (Seq x (Seq y z));
+
+Seq (Tag t x) (Tag t y) => Tag t (Seq x y);
 
 { when all other transformation is done }
 SNF x => x;
@@ -19,16 +26,73 @@ rm xml.tests
 /bin/umodem xml.tests EOF
 { tests for XML to SNF }
 
-SNF (Tag Bold (Tag Emph A)) -> (Tag Bold (Tag Emph A));
-SNF (Tag Bold (Tag Bold (Seq A B))) -> (Tag Bold (Seq A B));
-SNF (Tag Maj (Tag Bold (Seq A B))) -> (Tag Bold (Tag Maj (Seq A B)));
-SNF (Tag Maj (Tag Emph (Tag Bold (Seq A B)))) -> (Tag Bold (Tag Emph (Tag Maj (Seq A B))));
-SNF (Seq (Tag Emph (Tag Emph A)) (Tag Maj (Tag Maj B))) -> (Seq (Tag Emph A) (Tag Maj B));
-
 {
-SNF (Seq (Tag Bold (Tag Maj (Tag Maj (Seq (Seq B B) (Tag Bold A))))) (Tag Emph (Seq (Tag Maj (Tag Emph (Tag Bold A))) (Tag Emph (Tag Maj (Tag Maj A)))))) -> Seq X Y;
+SNF (Tag Bold (Tag Bold (Seq A B))) -> Tag Bold (Seq A B);
+SNF (Tag Maj (Tag Bold (Seq A B))) -> Tag Bold (Tag Maj (Seq A B));
+SNF (Seq (Seq A B) A) -> Seq A (Seq B A);
+SNF (Seq (Tag Bold A) (Tag Bold B)) -> Tag Bold (Seq A B);
+SNF (Seq (Tag Emph (Tag Emph A)) (Tag Maj (Tag Maj B))) -> Seq (Tag Emph A) (Tag Maj B);
+SNF (Seq (Tag Bold (Seq (Seq (Seq A A) B) (Seq A B))) (Seq (Seq (Seq (Tag Emph (Tag Emph A)) A) B) (Seq A (Tag Maj (Tag Maj B))))) -> Seq (Tag Bold (Seq A (Seq A (Seq B (Seq A B))))) (Seq (Tag Emph A) (Seq A (Seq B (Seq A (Tag Maj B)))));
+SNF (Tag Bold (Tag Bold (Tag Emph (Tag Bold (Tag Emph (Seq B A)))))) -> Tag Bold (Tag Emph (Seq B A));
 }
+
+SNF (Seq (Seq (Seq (Seq (Tag Bold (Tag Maj A)) (Tag Emph (Tag Emph B))) (Seq (Tag Maj (Tag Maj B)) (Seq (Tag Maj B) (Seq A B)))) (Seq (Seq (Seq (Seq A A) (Seq A A)) (Tag Emph (Tag Bold B))) (Seq (Tag Emph (Tag Maj B)) (Tag Maj (Seq B B))))) (Seq (Seq (Tag Maj (Seq (Seq B B) (Seq A B))) (Seq (Seq (Seq B B) (Tag Bold B)) (Tag Maj (Seq B B)))) (Tag Maj (Seq (Seq (Tag Maj A) (Seq A B)) (Seq (Tag Maj A) (Tag Emph A)))))) -> Something;
 
 . { end of tests }
 EOF
 advise step xml.adv xml.tests
+
+Seq (Seq (Seq (Seq (Tag Bold (Tag Maj A)) (Tag Emph B))
+          (Seq (Tag Maj (Tag Maj B))
+               (Seq (Tag Maj B) (Seq A B))))
+     (Seq (Seq (Seq (Seq A A)
+                    (Seq A A))
+               (Tag Emph (Tag Bold B)))
+          (Seq (Tag Emph (Tag Maj B))
+               (Tag Maj (Seq B B)))))
+(Seq (Seq (Tag Maj (Seq (Seq B B)
+                        (Seq A B)))
+          (Seq (Seq (Seq B B)
+                    (Tag Bold B))
+               (Tag Maj (Seq B B))))
+     (Tag Maj (Seq (Seq (Tag Maj A)
+                        (Seq A B))
+                   (Seq (Tag Maj A) (Tag Emph A)))))
+
+Seq (Tag Bold (Tag Maj A))
+    (Seq (Tag Emph B)
+         (Seq (Tag Maj B)
+              (Seq (Tag Maj B)
+                   (Seq A
+                       (Seq B
+                           (Seq A
+                               (Seq A
+                                   (Seq A
+
+                                       (Seq A
+                                           (Seq (Tag Bold (Tag Emph B))
+                                                (Seq (Tag Emph (Tag Maj B))
+                                                     (Seq (Tag Maj (Seq B B))
+                                                          (Seq (Seq (Tag Maj (Seq (Seq B B)
+                                                                                  (Seq A B)
+                                                                             )
+                                                                    )
+                                                               )
+                                                               (Seq (Seq (Seq B B))
+                                                                    (Tag Bold B)
+                                                               )
+                                                               (Tag Maj (Seq B B))
+                                                          )
+                                                     )
+                                                )
+                                                (Tag Maj (Seq (Seq (Tag Maj A)
+                                                                   (Seq A B)
+                                                              )
+                                                              (Seq (Tag Maj A)
+                                                                   (Tag Emph A)
+                                                              )
+                                                         )
+                                                )
+                                           )
+                                       )
+                                    )))))))))))
